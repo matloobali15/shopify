@@ -1,0 +1,51 @@
+{% unless template == 'index' or template == 'cart' or template == 'list-collections' %}
+<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+  
+  <div class="page-width">  
+  <div class="breadcrumb-grid mk-res-cls">  
+  <hr id="mk-bread-border">  
+  <a href="/" title="Home">home</a>
+    
+  {% if template contains 'page' %}
+    <span class="mk-gray" aria-hidden="true"> / </span>
+    <span class="breadcrumb-title">{{ page.title }}</span>
+  {% elsif template contains 'product' %}
+    {% if collection.url %}
+      <span class="mk-gray" aria-hidden="true"> / </span>
+      {{ collection.title | link_to: collection.url }}
+    {% endif %}
+    <span class="mk-gray" aria-hidden="true"> / </span>
+    <span class="breadcrumb-title">{{ product.title }}</span>
+  {% elsif template contains 'collection' and collection.handle %}
+    <span class="mk-gray" aria-hidden="true"> / </span>
+    {% if current_tags %}
+      {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+      {{ collection.title | link_to: url }}
+      <span class="mk-gray" aria-hidden="true"> / </span>
+      <span>{{ current_tags | join: " + " }}</span>
+    {% else %}
+      <span class="breadcrumb-title"> {{ collection.title }} </span>
+    {% endif %}
+  {% elsif template == 'blog' %}
+    <span class="mk-gray" aria-hidden="true"> / </span>
+    {% if current_tags %}
+      {{ blog.title | link_to: blog.url }}
+      <span class="mk-gray" aria-hidden="true"> / </span>
+      <span>{{ current_tags | join: " + " }}</span>
+    {% else %}
+    <span class="breadcrumb-title">{{ blog.title }}</span>
+    {% endif %}
+  {% elsif template == 'article' %}
+    <span class="mk-gray" aria-hidden="true"> / </span>
+    {{ blog.title | link_to: blog.url }}
+    <span class="mk-gray" aria-hidden="true"> / </span>
+    <span class="breadcrumb-title">{{ article.title }}</span>
+  {% else %}
+   <span class="mk-gray" aria-hidden="true"> / </span>
+   <span class="breadcrumb-title">{{ page_title }}</span>
+  {% endif %}
+  
+  </div>  
+  </div>
+</nav>
+{% endunless %}

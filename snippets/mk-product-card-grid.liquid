@@ -1,0 +1,18 @@
+{% unless grid_image_width %}
+  {%- assign grid_image_width = '300x300' -%}
+{% endunless %}
+{%- assign grid_image_scale = '2' -%}
+
+<div class="mk-gd-vw-itm grid-view-item{% unless product.available %} product-price--sold-out grid-view-item--sold-out{% endunless %}">
+  <a class="mk-gd-vw-itm-link grid-view-item__link" >
+    
+    <img class="mk-owl-img grid-view-item__image" src="{{ product.featured_image.src | img_url: grid_image_width, scale: grid_image_scale }}" alt="{{ product.featured_image.alt }}">
+    
+    <div class="mk-abt-overlay">
+      <div class="h4 grid-view-item__title">{{ product.title }}</div>
+      <hr>
+      <p>{{ product.description }}</p>
+    </div>
+    
+  </a>
+</div>

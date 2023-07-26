@@ -1,0 +1,103 @@
+{% include 'BREADCRUMB' %}
+<div class="page-width">
+  <div class="mk-full-body mk-grid2 grid mk-res-cls">
+    
+    {%comment%}
+    <div class="mk-map-dv map-container">
+    <iframe src="https://www.google.com/maps/embed?pb={{section.settings.api_key}}" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    {%endcomment%}
+   
+    <div class="mk-cntct-left grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      {%comment%}<div class="section-header text-center">
+        <h1>{{ page.title }}</h1>
+      </div>{%endcomment%}
+
+      <div class="section-header text-center">
+        <h1>send your comments </h1>
+      </div>
+      
+      {%comment%}{% if page.content.size > 0 %}
+        <div class="rte">
+          {{ page.content }}
+        </div>
+      {% endif %}{%endcomment%}
+
+      <div class="contact-form form-vertical">
+        {% form 'contact' %}
+
+          {% if form.posted_successfully? %}
+            <p class="note form-success">
+              {{ 'contact.form.post_success' | t }}
+            </p>
+          {% endif %}
+
+          {{ form.errors | default_errors }}
+
+          <div class="mk-grid2 grid grid--half-gutters">
+            <div class="mk-contactpg-inputs mk-grid grid__item medium-up--one-half">
+              {%comment%}<label for="ContactFormName">{{ 'contact.form.name' | t }}</label>{%endcomment%}
+              <input type="text" id="ContactFormName" placeholder="Your Name *" name="contact[name]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+            </div>
+            <div class="mk-contactpg-inputs mk-grid grid__item medium-up--one-half">
+              {%comment%}<label for="ContactFormEmail" class="{% if form.errors contains 'email' %}label--error{% endif %}">{{ 'contact.form.email' | t }}</label>{%endcomment%}
+              <input type="email" id="ContactFormEmail" placeholder="Your Email *" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" class="{% if form.errors contains 'email' %}input--error{% endif %}">
+            </div>
+          </div>
+
+          {%comment%}<label for="ContactFormPhone">{{ 'contact.form.phone' | t }}</label>{%endcomment%}
+          <div class="mk-contactpg-inputs" >
+          <input type="tel" id="ContactFormPhone" placeholder="Your Phone *" name="contact[phone]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+          </div>
+        
+          {%comment%}<label for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>{%endcomment%}
+          <textarea rows="10" id="ContactFormMessage" placeholder="Your Message *" name="contact[body]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+          {%comment%}<input type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">{%endcomment%}
+          <input type="submit" class="btn" value="{{ 'send message' }}">
+
+        {% endform %}
+      </div>
+    </div>  
+    
+    
+    <div class="mk-cntct-right">
+      <div class="section-header text-center">
+        <h1>{{ page.title }}</h1>
+      </div>
+      {% if page.content.size > 0 %}
+        <div class="rte">
+          {{ page.content }}
+          {% section 'contact' %}
+        </div>
+      {% endif %}
+    </div>
+    
+
+    <div class="mk-map-dv map-container">
+<!--       {{ settings.map_enable }} -->
+      {% section 'map-contact' %}
+  </div>
+</div>
+
+<style>
+
+.map-container { width: 100%;  margin: 40px 0 10px 0; }
+.map-container iframe{
+	width: 100%;
+	display: block;
+	pointer-events: none;
+	position: relative; /* IE needs a position other than static */
+}
+.map-container iframe.clicked {	pointer-events: auto; }
+</style>
+
+<script>
+$('.map-container')
+	.click(function(){
+			$(this).find('iframe').addClass('clicked')})
+	.mouseleave(function(){
+			$(this).find('iframe').removeClass('clicked')});
+</script>
+
+

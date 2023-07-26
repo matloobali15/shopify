@@ -1,0 +1,33 @@
+{% unless grid_image_width %}
+  {%- assign grid_image_width = '300x300' -%}
+{% endunless %}
+{%- assign grid_image_scale = '2' -%}
+
+<div class="mk-gd-vw-itm grid-view-item{% unless product.available %} product-price--sold-out grid-view-item--sold-out{% endunless %}">
+  <a class="mk-gd-vw-itm-link grid-view-item__link" href="{{ product.url | within: collection }}">
+    <img class="mk-owl-img grid-view-item__image" src="{{ product.featured_image.src | img_url: "433x300" }}" alt="{{ product.featured_image.alt }}">
+  </a>
+    <div class="h4 grid-view-item__title">{{ product.title }}</div>
+    {% if section.settings.show_vendor %}
+      <div class="grid-view-item__vendor">{{ product.vendor }}</div>
+    {% endif %}
+  <div class="evm_revews_cus">
+  {%- if settings.show_reviews -%}
+    {%- if product.metafields.evmRevCount.evmProdRevCount -%} 
+    {{ product.metafields.evmCollectionReview.evmCollectionReviewStar }}
+  {%- else -%}
+  <div class="img_star">
+    <img src="https://cdn.shopify.com/s/files/1/2196/0781/files/Group_147.png?v=1599215702">
+  </div>
+  {%- endif -%}
+  {%- else -%}         
+  <div></div>
+  {%- endif -%}
+  </div>
+  
+    <div class="grid-view-item__meta">
+      {% include 'product-price' %}
+    </div>
+      {%comment%}{% include 'ADD-TO-CART' %}{%endcomment%}
+
+</div>

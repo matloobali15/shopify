@@ -1,0 +1,90 @@
+<ul class="site-nav list--inline {{ nav_alignment }}" id="SiteNav">
+  {% for link in linklists[section.settings.main_linklist].links %}
+    {%- assign child_list_handle = link.title | handleize -%}
+
+    {% if linklists[child_list_handle].links != blank %}
+      <li class="site-nav--has-dropdown{%comment%}{% if link.active %} site-nav--active{% endif %}{%endcomment%}">
+        <a href="{{ link.url }}" class="mk-parent-nav-links site-nav__link site-nav__link--main" aria-has-popup="true" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">
+          {{ link.title }}
+		  <i class="fa fa-caret-down" aria-hidden="true"></i>
+          <span class="visually-hidden">{{ 'layout.navigation.expand' | t }}</span>
+        </a>
+        {% if link.title == "shop" %}        
+        <div class="mk-nv-drpdwn site-nav__dropdown" id="SiteNavLabel-{{ child_list_handle }}">
+          <ul>
+            {% for childlink in linklists[child_list_handle].links %}
+              <li {% if childlink.active %}class="site-nav--active"{% endif %}>
+                <a href="{{ childlink.url }}" class="mk-child-nav-links site-nav__link site-nav__child-link{% if forloop.last %} site-nav__link--last{% endif %}">                  
+                  <div class="link">{{ childlink.title | escape }}</div>                  
+                  <div class="mk-nv-drpdwn-img">
+                    
+                    <!-- this commented part will show the collection featured image-->
+                    {%comment%}{% if childlink.type == "collection_link" and childlink.object.image %}
+                    {{ childlink.object.image | img_url: 'grande' | img_tag }}
+                    {% endif %}{%endcomment%}
+                    
+                    <!-- this commented part will show the collection first product image-->
+                    {%comment%}<img  class="mk-drp-img" src="{{ childlink.object.products.first.images.last | product_img_url: 'master' }}"  alt="{{ link.object.title | escape }}" display="block" />{%endcomment%}
+                 
+                    
+                    {{ section.settings.image1 | img_url: '160x160', scale: 2 | img_tag: section.settings.image.alt, 'logo-bar__image' }}
+                    {{ section.settings.image2 | img_url: '160x160', scale: 2 | img_tag: section.settings.image.alt, 'logo-bar__image' }}
+                    {{ section.settings.image3 | img_url: '160x160', scale: 2 | img_tag: section.settings.image.alt, 'logo-bar__image' }}
+                    {{ section.settings.image4 | img_url: '160x160', scale: 2 | img_tag: section.settings.image.alt, 'logo-bar__image' }}
+                    {{ section.settings.image5 | img_url: '160x160', scale: 2 | img_tag: section.settings.image.alt, 'logo-bar__image' }}
+                    
+                    
+                  </div>                
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        
+        {%else%}        
+
+          <ul class="site-nav__dropdown site-nav__dropdown-main mk-normalize-dd" id="SiteNavLabel-{{ child_list_handle }}">
+            {% for childlink in linklists[child_list_handle].links %}
+            {% assign child_list_handle = childlink.title | handleize %}
+
+            {% if linklists[child_list_handle].links != blank %}
+            <li class="site-nav--has-dropdown-second {% if childlink.active %}site-nav--active{% endif %}">
+              <a href="{{ childlink.url }}" class="site-nav__link">
+                {{ childlink.title | escape }}
+                <span class="icon-fallback-text">
+                  <i class="fa fa-caret-right" aria-hidden="true"></i>
+                </span>
+              </a>
+              <ul class="site-nav__dropdown-second">
+                {% for childlink in linklists[child_list_handle].links %}
+                <li {% if childlink.active %} class="site-nav--active"{% endif %}>
+                  <a href="{{ childlink.url }}" class="site-nav__link">{{ childlink.title | escape }}</a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% else %}
+            <li {% if childlink.active %}class="site-nav--active"{% endif %}>
+              <a href="{{ childlink.url }}" class="site-nav__link">{{ childlink.title }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        {%endif%}
+        
+      </li>
+    {% else %}
+      <li {% if link.active %}class="site-nav--active"{% endif %}>
+        <a href="{{ link.url }}" class="mk-parent-nav-links site-nav__link site-nav__link--main">{{ link.title }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+<script>
+  $(".site-nav--has-dropdown-second").hover(function () {
+    $(this).find("ul").css("display" , "block");
+  },
+  function () {
+    $(this).find("ul").css("display" , "none");
+  });
+</script>

@@ -1,0 +1,42 @@
+<div class="list-view-item__image-column">
+  <div class="list-view-item__image-wrapper">
+    <img class="list-view-item__image" src="{{ product.featured_image.src | img_url: '95x95', scale: 2 }}" alt="{{ product.featured_image.alt | escape }}">
+  </div>
+</div>
+
+<div class="list-view-item__title-column">
+  <div class="list-view-item__title">{{ product.title }}</div>
+  <div class="mk-product-desc">{{ product.description }}</div>
+  {% if product.compare_at_price > product.price %}
+    <div class="list-view-item__on-sale">{{ 'products.product.on_sale' | t }}</div>
+  {% endif %}
+  {% if section.settings.show_vendor %}
+    <div class="list-view-item__vendor medium-up--hide">{{ product.vendor }}</div>
+  {% endif %}
+  {% unless product.available %}
+    <div class="list-view-item__sold-out">{{ 'products.product.sold_out' | t }}</div>
+  {% endunless %}
+  <div class="evm_revews_cus">
+  {%- if settings.show_reviews -%}
+    {%- if product.metafields.evmRevCount.evmProdRevCount -%} 
+    {{ product.metafields.evmCollectionReview.evmCollectionReviewStar }}
+  {%- else -%}
+  <div class="img_star">
+    <img src="https://cdn.shopify.com/s/files/1/2196/0781/files/Group_147.png?v=1599215702">
+  </div>
+  {%- endif -%}
+  {%- else -%}         
+  <div></div>
+  {%- endif -%}
+  </div>
+</div>
+
+{% if section.settings.show_vendor %}
+  <div class="list-view-item__vendor-column small--hide">
+    <div class="list-view-item__vendor">{{ product.vendor }}</div>
+  </div>
+{% endif %}
+
+<div class="list-view-item__price-column">
+  {% include 'product-price' %}
+</div>

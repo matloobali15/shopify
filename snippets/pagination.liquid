@@ -1,0 +1,35 @@
+<ul class="list--inline pagination">  
+  
+  <li>
+    {% unless paginate.previous.is_link %}
+      <div class="btn btn--secondary btn--narrow">        
+		<i class="fa fa-angle-left" aria-hidden="true"></i>        
+      </div>
+    {% else %}
+      <a href="{{ paginate.previous.url }}" class="btn btn--secondary btn--narrow">        
+		<i class="fa fa-angle-left" aria-hidden="true"></i>
+      </a>
+    {% endunless %}
+  </li>
+  
+  <li>
+        {% if paginate.pages > 1 %}
+          <div class="pagination2">
+          {{ paginate | default_pagination: previous: '&larr;', next: '&rarr;' }}
+        </div>
+        {% endif %}
+  </li>
+
+  <li>
+    {% unless paginate.next.is_link %}
+      <div class="btn btn--secondary btn--narrow">        
+		<i class="fa fa-angle-right" aria-hidden="true"></i>      
+      </div>
+    {% else %}
+      <a href="{{ paginate.next.url }}" class="btn btn--secondary btn--narrow">        
+		<i class="fa fa-angle-right" aria-hidden="true"></i>
+      </a>
+    {% endunless %}
+  </li>
+  
+</ul>

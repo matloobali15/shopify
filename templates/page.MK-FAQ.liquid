@@ -1,0 +1,72 @@
+{% include 'BREADCRUMB' %}
+<div class="page-width">
+  <div class="mk-full-body mk-grid2 grid mk-res-cls">
+    <div class="mk-all-pg-inner mk-grid grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      <div class="section-header text-center">
+        <h1>{{ page.title }}</h1>
+      </div>
+
+      <div class="rte faqpage" id="faq">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<style>
+/* Style the buttons that are used to open and close the accordion panel */
+button.accordion {
+    color: #444;
+    cursor: pointer;
+    padding: 15px 25px;
+    width: 100%;
+    text-align: left;
+    border:none;
+    border-top: 1px solid #e1e1e1;
+    outline: none;
+    transition: 0.4s;
+    background-color:white;
+}
+.mk-border-btm { border-bottom:1px solid #e1e1e1!important; }
+button.accordion.active, button.accordion:hover  .mk-border-btm { border-bottom:0; }
+  
+/* Style the accordion panel. Note: hidden by default */
+div.panel {
+    padding: 25px;
+    background-color: white;
+    display: none;
+    border: 1px solid #e1e1e1;
+  	margin-bottom:20px;
+    border-top: 0;
+}
+.mk-last-panel { margin-bottom:0!important; }
+.mk-all-pg-inner #faq hr { display:block!important;	margin: 40px 0 25px; }
+.mk-all-pg-inner #faq hr.mk-first-hr { margin: 10px 0 25px 0; }
+.mk-all-pg-inner .faqpage h3 { margin: 0 0 20px 0; }
+  
+  
+</style>
+
+<script type="text/javascript">
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    }
+}
+</script>

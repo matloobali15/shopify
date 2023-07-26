@@ -1,0 +1,23 @@
+<div id="page" class="page-width desktop-12 tablet-6 mobile-3">
+  
+  {% include 'BREADCRUMB' %}
+  <div class="mk-abt-page mk-res-cls" id="page-content"{% if linklists[settings.pagelist] != blank %} class="desktop-9 tablet-4 mobile-3{% endif %}">
+    {%comment%}<h1 class="page-title">{{ page.title }}</h1>{%endcomment%}
+    <div class="rte">{{ page.content }}
+    
+      {% section 'mk-about-us-owl-slider' %}
+      
+    </div>
+  </div>
+  
+  {% if linklists[settings.pagelist] != blank %}
+  <div id="page-sidebar" class="desktop-3 tablet-2 mobile-3">
+    <h2>{{ settings.page-sidebar-title }}</h2>
+    <ul>
+      {% for link in linklists[settings.pagelist].links %}
+      <li>{{ link.title | link_to: link.url }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>

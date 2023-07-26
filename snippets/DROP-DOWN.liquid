@@ -1,0 +1,51 @@
+<!--<style>
+ul#menu { width: 100%; margin: 0; padding: 0; color: black; float: left; }
+ul#menu > li {float:left;list-style-type:none;position:relative; width:100%; margin: 0 0 20px 0; }
+.submenu p { text-align: justify; font-size: 12px; line-height: 22px; }
+#menu input:checked ~ label:after { font-family:FontAwesome; content:"\f068";}
+#menu input{display:none}
+  
+#menu label
+{ position:relative; display:block; padding:0 18px 0 0; line-height:3em;
+  transition:background 0.3s; cursor:pointer; border-bottom: 1px solid rgba(141, 141, 141, 0.42);
+  text-transform: uppercase; }
+
+#menu label:after
+{ font-family:FontAwesome; content:"\f067"; position:absolute; display:block;
+  top:0; right:13px; width:0; height:0; }
+  
+#menu input:checked ~ ul.submenu
+{ max-height:300px; position: static; transition:max-height 1ms ease-in;
+  padding: 30px 0 20px; }
+  
+ul.submenu
+{ max-height:0; padding:0; overflow:hidden; list-style-type:none; transition:max-height 1ms ease-out;
+  position:absolute;  min-width:100%; }
+  
+ul.submenu li a
+{ display:block; color:black; text-decoration:none; transition:background 1ms; }
+</style> -->
+
+<ul id="menu">
+  <li>
+    <input id="check01" type="checkbox" name="menu"/>
+    <label class="mk-drop" for="check01">description</label>
+    <ul class="submenu">
+      <li><p>{{product.description}}</p></li>
+    </ul>
+  </li>
+  <li>
+    <input id="check02" type="checkbox" name="menu"/>
+    <label class="mk-drop" for="check02">review</label>
+    <ul class="submenu">
+      <li>
+         {%- if settings.show_reviews -%}
+        <div id="review" class="tabcontent">
+          <div id='expert_leave_review' data-product-id='{{ product.id }}' data-product-handle='{{product.handle}}' data-product-name='{{ product.title }}' evm-data-img-url='{{ product.featured_image | img_url: 'large' }}'></div>
+        </div> 
+         {%- endif -%}
+      </li>
+    </ul>
+  </li>
+</ul>
+

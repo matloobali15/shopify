@@ -1,0 +1,58 @@
+{% unless collection_image_size %}
+  {%- assign collection_image_size = '340x340' -%}
+{% endunless %}
+{%- assign collection_image_scale = '2' -%}
+
+{% if collection.image == blank %} 
+{% if forloop.index == 1 or forloop.index == 3 %}
+  
+{% assign no_image = 'Collection_2.jpg' | asset_img_url: 'master' %}
+
+
+{%else%}
+
+{% assign no_image = 'Collection_4.jpg' | asset_img_url: 'master' %}
+
+
+{% endif %}
+{% endif %}
+
+
+{% if collection.image %}
+
+
+  {% capture collection_image_url %}{{ collection | img_url: collection_image_size, scale: collection_image_scale, crop: 'top' }}{% endcapture %}
+
+
+{% elsif collection.products.first and collection.products.first.images != empty %}
+ {{collection_image_url}}
+{% capture collection_image_url %}{{ collection.products.first | img_url: collection_image_size, scale: collection_image_scale, crop: 'top' }}{% endcapture %}
+
+
+{% else %}
+
+
+  {% assign collection_image_url = blank %}
+{% endif %}
+
+
+
+<div class="mk-mycol-itm collection-grid-item">
+  <a href="{{ collection.url }}" class="mk-mycol-gd-itm-lnk collection-grid-item__link">
+    <div class="collection-grid-item__overlay"  {% if collection.image == blank %} style="background-image: url({{ no_image }})" {%else%}style="background-image: url({{ collection_image_url }})"{%endif%}>
+    </div>
+
+            <span class="overlay-inner"></span>
+            <span class="overlay-inner2"></span>
+    
+    <div class="mk-mycol-itm-title-wrap collection-grid-item__title-wrapper">
+        <h3 class="mk-mycol-gd-itm-title collection-grid-item__title">
+        {% if collection.title == blank %}
+          {{ 'homepage.onboarding.collection_title' | t }}
+        {% else %}
+          {{ collection.title }}
+        {% endif %}
+        </h3>
+    </div>
+  </a>
+</div>

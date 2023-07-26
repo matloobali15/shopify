@@ -1,0 +1,19 @@
+{% if shop.customer_accounts_enabled %}
+
+            {% if customer %}
+              {{ 'Log out' | customer_logout_link }}
+		   
+           <span id="line"> | </span>
+
+           <a href="/account" id="mk-login"class="site-header__account">
+           {%comment%}{% include 'icon-login' %}{%endcomment%}
+           my account
+           <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}login</span>
+           </a>
+
+            {% else %}
+              {{ 'Log in' | customer_login_link }}
+            {% endif %}
+
+
+{% endif %}
