@@ -1,0 +1,165 @@
+<style>
+
+  .mk-f-row-text-itm h2.h3
+  { color:{{ section.settings.heading_color}}; }
+  .mk-f-row-text-itm p
+  {
+    color:{{ section.settings.richtext_color}};
+  }
+  .mk-f-row-text-itm a.btn
+  { background-color:{{ section.settings.button_bg_color}};
+    color:{{ section.settings.button_text_color}}!important;
+    border:1px solid {{ section.settings.button_text_color}};
+  }
+  .mk-f-row-text-itm a.btn { border-color: {{ section.settings.button_border_color}}; }
+  
+  { color:{{ section.settings.button_text_color}};!important; }
+  
+</style>
+
+<div class="page-width feature-row">
+  {% capture image_layout %}
+    <div class="mk-f-row-img-itm feature-row__item">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | img_url: '600x600' | img_tag: section.settings.image.alt, 'feature-row__image' }}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+<!--       <hr> -->
+    </div>
+  {% endcapture %}
+  
+    {% capture image_layout_new %}
+    <div class="mk-f-row-img-itm right feature-row__item">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | img_url: '600x600' | img_tag: section.settings.image.alt, 'feature-row__image' }}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+<!--       <hr> -->
+    </div>
+  {% endcapture %}
+
+  <div class="mk-f-row-inner feature-row mk-res-cls">
+    {% if section.settings.layout == 'left' %}
+      {{ image_layout }}
+    {% endif %}
+
+    <div class="mk-f-row-text-itm feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }}">
+      {% if section.settings.title != blank %}
+        <h2 class="h3">{{ section.settings.title | escape }}</h2>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="mk-f-row-rte rte-setting featured-row__subtext">{{ section.settings.text }}</div>
+      {% endif %}
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {% endif %}
+    </div>
+
+    {% if section.settings.layout == 'right' %}
+      {{ image_layout_new }}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Image with text",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image",
+		"info": "Size 534 x 421px recommended"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Layout",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Image on left"
+          },
+          {
+            "value": "right",
+            "label": "Image on right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+      {
+        "type": "color",
+        "id": "heading_color",
+        "label": "Heading color",
+        "default": "#f5b554"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+      },
+      {
+        "type": "color",
+        "id": "richtext_color",
+        "label": "Text color",
+        "default": "#808080"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "color",
+        "id": "button_bg_color",
+        "label": "Button back-ground color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Button text color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "button_border_color",
+        "label": "Button border color",
+        "default": "#000000"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+	  {
+        "type": "header",
+		"content": "Contact for theme setup [Contact Us](https://bit.ly/evmthemes) ",
+		"info":"Starting price $500.00"
+      },
+	  {
+        "type": "header",
+		"content": "Are you looking for sales on your store? ",
+		"info":"Talk to us to get organic traffic to your store by monthly SEO. SEO is one of the cheapest way of traffic and works for long time too. [Contact Us](https://bit.ly/seorequestevm) "
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image with text",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

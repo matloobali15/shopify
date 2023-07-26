@@ -1,0 +1,89 @@
+<div class="page-width">
+
+  <div class="mk-my-sec-cllctn-gd collection-grid mk-res-cls">
+  
+  {% if section.settings.title != blank %}
+    <div class="section-header text-center">
+      <h2>{{ section.settings.title | escape }}</h2>
+      <p>
+        <img src="https://cdn.shopify.com/s/files/1/1755/9501/files/eTheme_JewelleryHeadingimg.png?10648569172913699812">
+      </p>
+    </div>
+  {% endif %}
+    
+    <div class="mk-four mk-grid2 grid grid--uniform">
+      {% for block in section.blocks limit: section.blocks.size %}
+        <div class="mk-mysec-gd-itm mk-my-sec-clr grid__item" {{ block.shopify_attributes }}>
+          {%- assign collection = collections[block.settings.collection2] -%}
+          {% include 'MY-COLLECTION-GRID-ITEM' %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if section.blocks.size == 0 %}
+    {% include 'no-blocks' %}
+  {% endif %}
+</div>
+
+{% schema %}
+  {
+    "name": "Four collections",
+    "class": "index-section",
+    "max_blocks": 4,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Four Collections",
+		"info" : "1st img sz 380 x 227px recommend. 2nd img sz 380x469px recommend. 3rd img sz 380x500px recommend. 4th img sz 117x500px recommend."
+      },
+	  {
+        "type": "header",
+		"content": "Contact for theme setup [Contact Us](https://bit.ly/evmthemes) ",
+		"info":"Starting price $500.00"
+      },
+	  {
+        "type": "header",
+		"content": "Are you looking for sales on your store? ",
+		"info":"Talk to us to get organic traffic to your store by monthly SEO. SEO is one of the cheapest way of traffic and works for long time too. [Contact Us](https://bit.ly/seorequestevm) "
+      }
+    ],
+    "blocks": [
+      {
+        "type": "featured_collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "label": "Collection",
+            "id": "collection2",
+            "type": "collection"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Four collections",
+        "category": "Collection",
+        "settings": {
+        },
+        "blocks": [
+          {
+            "type": "featured_collection"
+          },
+          {
+            "type": "featured_collection"
+          },
+          {
+            "type": "featured_collection"
+          },
+          {
+            "type": "featured_collection"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

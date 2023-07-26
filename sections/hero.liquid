@@ -1,0 +1,101 @@
+<style>
+  .hero__inner .mega-title
+  {
+    color:{{ section.settings.title_color}};!important;
+  }
+  .hero__btn
+  { background-color:{{ section.settings.button_bg_color}};
+    color:{{ section.settings.button_text_color}}!important;
+  }
+  .index-section--flush:last-child {margin-bottom:0px;}
+</style>
+
+<div class="page-width">
+<div class="mk-hero-grid mk-res-cls">
+<div class="mk-hero hero hero--{{ section.settings.hero_size }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %}"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}');"{% endif %}>
+  {% if section.settings.image == blank %}
+    <div class="placeholder-background">
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {% endif %}
+  <div class="hero__inner">
+    <div class="page-width text-center">
+      {% if section.settings.title != blank %}
+        <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title | escape }}</h2>
+      {% endif %}
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn hero__btn">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Image with text overlay",
+    "class": "index-section index-section--flush",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image",
+		"info": "Size 1170 x 180px recommended"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+      {
+        "type": "color",
+        "id": "title_color",
+        "label": "Heading color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "color",
+        "id": "button_bg_color",
+        "label": "Button back-ground color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Button text color",
+        "default": "#C32645"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+	  {
+        "type": "header",
+		"content": "Contact for theme setup [Contact Us](https://bit.ly/evmthemes) ",
+		"info":"Starting price $500.00"
+      },
+	  {
+        "type": "header",
+		"content": "Are you looking for sales on your store? ",
+		"info":"Talk to us to get organic traffic to your store by monthly SEO. SEO is one of the cheapest way of traffic and works for long time too. [Contact Us](https://bit.ly/seorequestevm) "
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image with text overlay",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,31 @@
+<div class="mk-map-dv map-container">
+  <iframe src="https://www.google.com/maps/embed?pb={{section.settings.api_key}}" width="100%" height="350px" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Map-Contact",
+    "class": "index-section index-section--flush",
+    "settings": [
+      {
+        "id": "api_key",
+        "type": "text",
+        "label": "Google Maps API key",
+        "info": "If your store experiences more than 2,500 visitors a day, you’ll need to generate both [JavaScript](https://developers.google.com/maps/documentation/javascript/get-api-key) and [Geocoding](https://developers.google.com/maps/documentation/geocoding/get-api-key) API keys"
+      },
+	  {
+        "type": "header",
+		"content": "Contact for theme setup [Contact Us](https://bit.ly/evmthemes) ",
+		"info":"Starting price $500.00"
+      },
+	  {
+        "type": "header",
+		"content": "Are you looking for sales on your store? ",
+		"info":"Talk to us to get organic traffic to your store by monthly SEO. SEO is one of the cheapest way of traffic and works for long time too. [Contact Us](https://bit.ly/seorequestevm) "
+      }
+      
+    ]
+  }
+{% endschema %}
+

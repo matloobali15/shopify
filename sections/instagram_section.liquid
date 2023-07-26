@@ -1,0 +1,47 @@
+{% if section.settings.instagram_enable %}
+<div class="instagram_section page-width">
+  <div id="evm-instagram-feed"></div> 
+  <script src="https://www.expertvillagemedia.com/instagramfeed/embed.js" data-shop-id="gems-ornament.myshopify.com" ></script>
+</div>
+{% endif %}
+{% schema %}
+  {
+    "name": "Instagram",
+    "settings": [
+      {
+      "type": "checkbox",
+      "id": "instagram_enable",
+      "label": "Instagram Enable",
+      "default": true
+      },
+      {
+        "type": "select",
+        "id": "Instagram_option_app",
+        "label": "Install Instagram App",
+        "info": "To Get this App [click here](http:\/\/apps.shopify.com\/instagram-feed)",
+        "options": [
+          {
+            "value": "top",
+            "label": "InstaPics for Instagram Feed"
+          }
+        ]
+      },
+	  {
+        "type": "header",
+		"content": "Contact for theme setup [Contact Us](https://bit.ly/evmthemes) ",
+		"info":"Starting price $500.00"
+      },
+	  {
+        "type": "header",
+		"content": "Are you looking for sales on your store? ",
+		"info":"Talk to us to get organic traffic to your store by monthly SEO. SEO is one of the cheapest way of traffic and works for long time too. [Contact Us](https://bit.ly/seorequestevm) "
+      }
+   ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

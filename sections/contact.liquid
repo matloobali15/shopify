@@ -1,0 +1,49 @@
+<p id="mk-cntct-icons"><img src="//cdn.shopify.com/s/files/1/1755/9501/files/Address.png?v=1494565789" alt="" /></p>
+<p class="mk-cntct-address">{{ section.settings.address }}</p>
+<hr />
+<p id="mk-cntct-icons"><img src="//cdn.shopify.com/s/files/1/1755/9501/files/Call_3b715263-5492-457e-ba14-0e0b5bfb10b2.png?v=1494565780" alt="" /></p>
+<p class="mk-cntct-address mk-tel">{{ section.settings.phone }}</p>
+<hr />
+<p id="mk-cntct-icons"><img src="//cdn.shopify.com/s/files/1/1755/9501/files/Mail.png?v=1494565785" alt="" /></p>
+<p class="mk-cntct-address mk-addr">{{ section.settings.mail }}</p>
+<hr />
+
+{% schema %}
+  {
+    "name": "Contact",
+    "class": "index-section",
+    "settings": [
+      {
+        "id": "address",
+        "type": "text",
+        "label": "Store Address"
+      },
+      {
+        "id": "phone",
+        "type": "text",
+        "label": "Contact-Number"
+      },
+      {
+        "id": "mail",
+        "type": "text",
+        "label": "Email"
+      },
+	  {
+        "type": "header",
+		"content": "Contact for theme setup [Contact Us](https://bit.ly/evmthemes) ",
+		"info":"Starting price $500.00"
+      },
+	  {
+        "type": "header",
+		"content": "Are you looking for sales on your store? ",
+		"info":"Talk to us to get organic traffic to your store by monthly SEO. SEO is one of the cheapest way of traffic and works for long time too. [Contact Us](https://bit.ly/seorequestevm) "
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
